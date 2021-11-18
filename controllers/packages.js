@@ -28,7 +28,13 @@ router.get('/queue', getPackageQueue);
 // ---------------------------
 
 async function getPackages(req, res) {
-  throw new Error('Not implemented.');
+  try {
+    const packages = await Package.find();
+    res.json(packages);
+  } catch (err) {
+    res.json({ message: err });
+  }
+  // throw new Error('Not implemented.');
 }
 
 async function createPackage(req, res) {
